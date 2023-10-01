@@ -1,13 +1,14 @@
 from resources import dictionary
 
+
 def text_to_morse(text):
     morse = ""
     for character in text:
         if character in dictionary:
-            # The space between letters is three units, therefore 3 spaces
+            # The space between letters is three units, therefore 3 spaces after each unit
             morse += dictionary[character] + "   "
         elif character == " ":
-            # The space between words is seven units, therefore add 4 spaces when space
+            # The space between words is seven units, therefore add 4 more spaces when space between words
             morse += "    "
     return morse
 
@@ -21,6 +22,10 @@ def morse_to_text(morse):
     for count, morse_unit in enumerate(morse_list):
         morse_list[count] = morse_unit.lstrip()
 
+    # Convert morse unit to character
+    # Finding key for the value in the dict works by converting both, keys and values to lists,
+    # then with index of the morse_unit finding the right key
+    print(dictionary.keys())
     for morse_unit in morse_list:
         if morse_unit != "":
             text += list(dictionary.keys())[list(dictionary.values()).index(morse_unit)]
@@ -49,6 +54,7 @@ def main():
             print(text)
         else:
             print("Input not available, please try again.")
+
 
 if __name__ == "__main__":
     main()
